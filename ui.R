@@ -10,7 +10,7 @@ library(shiny)
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("TII Simple Appraisal Tool"),
+  titlePanel("TII Simple Appraisal Tools"),
 
   # Sidebar with a slider input for number of bins
   sidebarLayout(
