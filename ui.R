@@ -98,7 +98,7 @@ shinyUI(
                          
                      ),
                      
-                     mainPanel(textOutput("time"))
+                     mainPanel(DT::dataTableOutput("time"))
                      
                  )),
         

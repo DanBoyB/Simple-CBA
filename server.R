@@ -45,8 +45,10 @@ shinyServer(function(input, output) {
     
     )
     
-   output$time <- renderText({
-       y()
+   output$time <- DT::renderDataTable({
+       datatable(y()) %>% 
+           formatRound(.,1, digits = 0) %>% 
+           formatRound(.,2, digits = 0)
    })
    
    output$cba <- DT::renderDataTable({
