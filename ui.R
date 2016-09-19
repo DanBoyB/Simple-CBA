@@ -10,6 +10,8 @@ library(shiny)
 
 shinyUI(
     navbarPage(
+        header = img(src="tiiLogo.jpg", height = 56.2, width = 90.8, align = "right"),
+        theme = "bootstrap.min.css",
         title = "Simple Appraisal Tool",
         
         tabPanel("Costs",
