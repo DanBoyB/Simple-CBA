@@ -16,6 +16,8 @@ shinyUI(
                  # Sidebar with a slider input for number of bins
                  sidebarLayout(
                      sidebarPanel(
+                         actionButton("submit1", "Generate Cost Table"),
+                         br(),
                          numericInput("costEst",
                                       "Scheme Capital Cost Estimate (million €):",
                                       value = 30),
@@ -60,18 +62,18 @@ shinyUI(
                              "costProp",
                              "Proportion of costs for each year (seperated by comma):",
                              "0.3,0.5,0.2"
-                         ),
-                         br(),
-                         actionButton("submit1", "Generate Cost Table"),
-                         br()
+                         )
+                         
                      ),
                      
-                     mainPanel(tableOutput("costs"))
+                     mainPanel(DT::dataTableOutput("costs"))
                  ))
         ,
         tabPanel("Time Savings",
                  sidebarLayout(
                      sidebarPanel(
+                         actionButton("submit2", "Generate Scheme Time Savings"),
+                         br(),
                          numericInput("dmLength",
                                       "Do Minimum Scheme Length (km):",
                                       value = 10),
@@ -90,9 +92,8 @@ shinyUI(
                          numericInput("forecastAadt",
                                       "Forecast Year AADT",
                                       value = 6000),
-                         br(),
-                         actionButton("submit2", "Generate Scheme Time Savings"),
                          br()
+                         
                      ),
                      
                      mainPanel(textOutput("time"))
@@ -102,6 +103,8 @@ shinyUI(
         tabPanel("Costs & Benefits",
                  sidebarLayout(
                      sidebarPanel(
+                         actionButton("submit3", "Generate Table of Costs & Benefits"),
+                         br(),
                          numericInput("forecastYear",
                                       "Forecast Year of Scheme:",
                                       value = 2035),
@@ -111,12 +114,11 @@ shinyUI(
                          numericInput("discountRate",
                                       "Discount Rate:",
                                       value = 0.05),
-                         br(),
-                         actionButton("submit3", "Generate Table of Costs & Benefits"),
                          br()
+                         
                      ),
                      
-                     mainPanel(tableOutput("cba"))
+                     mainPanel(DT::dataTableOutput("cba"))
                      
                  )),
         
@@ -124,7 +126,7 @@ shinyUI(
                  sidebarLayout(
                      sidebarPanel(actionButton("submit4", "Generate CBA Summary")),
                      
-                     mainPanel(tableOutput("summary"))
+                     mainPanel(DT::dataTableOutput("summary"))
                      
                  ))
         

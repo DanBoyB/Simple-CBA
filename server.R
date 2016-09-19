@@ -4,9 +4,9 @@
 #
 # http://shiny.rstudio.com
 #
-
 library(shiny)
 library(cba)
+library(DT)
 
 shinyServer(function(input, output) {
 
@@ -21,6 +21,7 @@ shinyServer(function(input, output) {
     y <- eventReactive(input$submit2, {
         timeSavings(input$dmLength, input$dsLength, input$dmSpeedLimit, 
                     input$dsSpeedLimit, input$openAadt, input$forecastAadt)
+                    
     })
     
     z <- eventReactive(input$submit3, {
@@ -33,21 +34,41 @@ shinyServer(function(input, output) {
     })
     
     
-    output$costs <- renderTable({
-        x()
-    })
+    output$costs <- DT::renderDataTable({
+        datatable(x()) %>% 
+            formatCurrency("costs", "€")
+    },
+    options=list(
+        paging = FALSE,
+        searching = FALSE
+        )
+    
+    )
     
    output$time <- renderText({
        y()
    })
    
-   output$cba <- renderTable({
-       z()
-   })
+   output$cba <- DT::renderDataTable({
+       datatable(z()) %>% 
+           formatCurrency(c("undiscCosts", "discCosts", "undiscBenefits", "discBenefits"), "€")
+   },
+   options=list(
+       paging = FALSE,
+       searching = FALSE
+   )
+   )
    
-   output$summary <- renderTable({
-       k()
-   })
+   output$summary <- DT::renderDataTable({
+       datatable(k()) %>% 
+           formatCurrency(c("PVC", "PVB", "NPV"), "€") %>% 
+           formatRound("BCR", digits = 1)
+   },
+   options=list(
+       paging = FALSE,
+       searching = FALSE
+   )
+   )
     
 })
   
