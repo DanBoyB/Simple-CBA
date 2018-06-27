@@ -15,12 +15,9 @@ time_sav_tab <- tabPanel("Time Savings",
                                  numericInput("proj_speed",
                                               "Proposed Speed Limit (kph):",
                                               value = 100),
-                                 textInput("road_type",
-                                           "Road Type:",
-                                           value = "nat_pr"),
                                  numericInput("veh_occ",
                                               "Average Vehicle Occupancy:",
-                                              value = 100),
+                                              value = 1.2),
                                  br()
                                  
                              ),

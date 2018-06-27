@@ -3,8 +3,8 @@ library(shiny)
 source("R/ui-costs-tab.R", local = TRUE)
 source("R/ui-proj-tab.R", local = TRUE)
 source("R/ui-time-sav-tab.R", local = TRUE)
+source("R/ui-voc-tab.R", local = TRUE)
 source("R/ui-cost-ben.R", local = TRUE)
-source("R/ui-cba-summary.R", local = TRUE)
 
 shinyUI(
     navbarPage(
@@ -14,7 +14,7 @@ shinyUI(
         costs_tab,
         proj_tab,
         time_sav_tab,
-        cost_ben_tab,
-        cba_summary
+        voc_tab,
+        cost_ben_tab
         )
     )

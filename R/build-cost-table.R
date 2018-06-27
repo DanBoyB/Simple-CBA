@@ -15,8 +15,12 @@ build_cost_table <- eventReactive(input$submit1, {
 })
 
 output$costs <- DT::renderDataTable({
-    datatable(build_cost_table()) %>%
-        formatCurrency("costs", "€")
+    datatable(build_cost_table() %>% 
+                  rename(Year = year, Costs = costs),
+              rownames = FALSE,
+              caption = "Present Value Costs (2011) by Year"
+              ) %>%
+        formatCurrency("Costs", "€")
 },
 options = list(
     paging = FALSE,
@@ -24,3 +28,4 @@ options = list(
     )
 
 )
+

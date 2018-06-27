@@ -1,19 +1,8 @@
-cost_ben_tab <- tabPanel("Costs & Benefits",
+cost_ben_tab <- tabPanel("CBA Results",
                          sidebarLayout(
                              sidebarPanel(
-                                 actionButton("submit4", "Generate Table of Costs & Benefits"),
-                                 br(),
-                                 numericInput("forecastYear",
-                                              "Forecast Year of Scheme:",
-                                              value = 2035),
-                                 numericInput("aveVoT",
-                                              "Average Value of Time (€):",
-                                              value = 14.03),
-                                 numericInput("discountRate",
-                                              "Discount Rate:",
-                                              value = 0.05),
+                                 actionButton("submit5", "Generate CBA Summary Table"),
                                  br()
-                                 
                              ),
                              
                              mainPanel(DT::dataTableOutput("cba"))
