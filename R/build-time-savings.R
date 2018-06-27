@@ -25,5 +25,8 @@ build_time_savings <- eventReactive(input$submit3, {
     })
 
 output$time <- DT::renderDataTable({
-    datatable(build_time_savings())
+    datatable(build_time_savings() %>% 
+                  rename(Year = year,
+                         `Discounted Benefits (€)` = disc_ben)) %>% 
+        formatCurrency(., 2, digits = 0, mark = ",", currency = "€")
     })

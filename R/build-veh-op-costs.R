@@ -32,10 +32,13 @@ build_veh_op_costs <- eventReactive(input$submit4, {
                            speed_ex = input$ex_speed,
                            speed_prop = input$proj_speed,
                            fuel_costs = fuel$f,
-                           non_fuel_costs = non_fuel$nf) %>% 
-        summarise(voc = sum(disc_costs))
+                           non_fuel_costs = non_fuel$nf) 
     })
 
 output$voc <- DT::renderDataTable({
-    datatable(build_veh_op_costs()) 
+    datatable(build_veh_op_costs() %>% 
+                  mutate(disc_costs = disc_costs * -1) %>% 
+                  rename(Year = year,
+                         `Discounted VOC (€)` = disc_costs))  %>% 
+        formatCurrency(., 2, digits = 0, mark = ",", currency = "€")
     })

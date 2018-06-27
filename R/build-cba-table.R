@@ -75,5 +75,14 @@ build_cba_table <- eventReactive(input$submit5, {
 })
 
 output$cba <- DT::renderDataTable({
-    datatable(build_cba_table())
+    datatable(build_cba_table() %>% 
+                  rename(`Present Value Benefits (PVB)` = pvb,
+                         `Present Value Costs (PVC)` = pvc,
+                         `Net Present Value (NPV)` = npv,
+                         `Benefit Cost Ratio (BCR)` = bcr)) %>% 
+        formatCurrency(., 1, digits = 0, mark = ",", currency = "€") %>% 
+        formatCurrency(., 2, digits = 0, mark = ",", currency = "€") %>% 
+        formatCurrency(., 3, digits = 0, mark = ",", currency = "€") %>% 
+        formatRound(., 4, digits = 2)
+    
 })

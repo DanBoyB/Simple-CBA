@@ -1,7 +1,7 @@
 time_sav_tab <- tabPanel("Time Savings",
                          sidebarLayout(
                              sidebarPanel(
-                                 actionButton("submit3", "Generate Scheme Time Savings"),
+                                 actionButton("submit3", "Generate Annual Time Benefits"),
                                  br(),
                                  numericInput("ex_length",
                                               "Existing Scheme Length (km):",

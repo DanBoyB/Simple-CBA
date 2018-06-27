@@ -20,7 +20,7 @@ output$costs <- DT::renderDataTable({
               rownames = FALSE,
               caption = "Present Value Costs (2011) by Year"
               ) %>%
-        formatCurrency("Costs", "€")
+        formatCurrency("Costs", "€", digits = 0)
 },
 options = list(
     paging = FALSE,

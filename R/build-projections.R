@@ -9,11 +9,12 @@ build_projections <- eventReactive(input$submit2, {
 })
 
 output$traffic <- DT::renderDataTable({
-    datatable(build_projections()) %>%
-        formatRound(.,1, digits = 0) %>%
-        formatCurrency(.,2, digits = 0, mark = ",", currency = "") %>% 
-        formatCurrency(.,3, digits = 0, mark = ",", currency = "") %>% 
-        formatCurrency(.,4, digits = 0, mark = ",", currency = "")
+    datatable(build_projections() %>% 
+                  mutate(AADT = total / 365) %>% 
+                  rename(Year = year) %>% 
+                  select(Year, AADT)) %>% 
+        formatRound(., 1, digits = 0) %>%
+        formatCurrency(., 2, digits = 0, mark = ",", currency = "")
 },
 options = list(
     paging = FALSE,
